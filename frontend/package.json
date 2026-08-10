@@ -6,27 +6,27 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint"
   },
   "dependencies": {
     "@nhost/nhost-js": "^4.8.0",
     "@nhost/react": "^3.11.2",
-    "framer-motion": "^13.0.0",
-    "graphql": "^16.14.2",
-    "graphql-ws": "^6.2.1",
-    "lucide-react": "^1.31.0",
-    "next": "16.3.0",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "uuid": "^14.0.1"
+    "framer-motion": "^12.0.0",
+    "graphql": "^16.8.1",
+    "graphql-ws": "^5.14.3",
+    "lucide-react": "^0.469.0",
+    "next": "^15.1.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@types/uuid": "^10.0.0",
-    "eslint": "^9",
-    "eslint-config-next": "16.3.0",
-    "typescript": "^5"
+    "@types/node": "^20.11.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/uuid": "^9.0.8",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.1.7",
+    "typescript": "^5.3.3"
   }
 }
