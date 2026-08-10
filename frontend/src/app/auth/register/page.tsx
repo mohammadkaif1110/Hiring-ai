@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import ClientLayout from '@/components/ClientLayout';
 import { useAuth } from '@/components/AuthProvider';
@@ -15,9 +15,14 @@ function RegisterContent() {
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push('/dashboard');
+    }
+  }, [isAuthenticated, router]);
+
   if (isAuthenticated) {
-    router.push('/dashboard');
-    return null;
+    return <div className="auth-container"><div className="spinner spinner-lg" /></div>;
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
