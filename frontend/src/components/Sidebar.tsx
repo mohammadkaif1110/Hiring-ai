@@ -106,7 +106,7 @@ export default function Sidebar() {
 
       <div className="sidebar-footer">
         <div style={{ fontSize: 13, color: 'var(--text-secondary)', marginBottom: 8 }}>
-          {user?.displayName || user?.email}
+          {user?.displayName || user?.email || 'User'}
         </div>
         <button className="btn btn-ghost btn-sm" style={{ width: '100%' }} onClick={signOut}>
           Sign Out
