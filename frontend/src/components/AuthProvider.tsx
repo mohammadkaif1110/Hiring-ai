@@ -77,10 +77,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const graphqlRequest = useCallback(async (query: string, variables?: any, isRetry = false): Promise<any> => {
     let token = accessTokenRef.current;
-    let graphqlUrl = process.env.NEXT_PUBLIC_NHOST_GRAPHQL_URL || 'http://localhost:1337/v1/graphql';
-    if (graphqlUrl.endsWith('/v1')) {
-      graphqlUrl += '/graphql';
-    }
+    const graphqlUrl = process.env.NEXT_PUBLIC_NHOST_GRAPHQL_URL || 'http://localhost:1337/v1/graphql';
     
     const response = await fetch(graphqlUrl, {
       method: 'POST',
