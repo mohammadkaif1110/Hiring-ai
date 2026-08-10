@@ -1,23 +1,10 @@
 {
-  "name": "ai-workflow-builder-functions",
+  "name": "hiring-ai",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc",
-    "dev": "nhost up"
-  },
-  "dependencies": {
-    "graphql": "^16.8.1",
-    "graphql-request": "^6.1.0",
-    "groq-sdk": "^0.8.0",
-    "node-fetch": "^2.7.0",
-    "uuid": "^9.0.0"
-  },
-  "devDependencies": {
-    "@nhost/cli": "^1.49.0-beta01",
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.11.5",
-    "@types/uuid": "^9.0.7",
-    "typescript": "^5.3.3"
+    "dev": "npm --prefix frontend run dev",
+    "build": "cd frontend && npm install && npm run build",
+    "start": "npm --prefix frontend run start"
   }
 }
