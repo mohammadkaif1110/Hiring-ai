@@ -42,7 +42,13 @@ version = '0.49.1'
 mode = 'disabled'
 
 [auth.redirections]
-clientUrl = 'http://localhost:3000'
+clientUrl = 'https://hiring-ai-v2.vercel.app'
+allowedUrls = [
+  'http://localhost:3000',
+  'https://hiring-ai.vercel.app',
+  'https://hiring-ai-v2.vercel.app',
+  'https://*.vercel.app'
+]
 
 [auth.signUp]
 enabled = true
