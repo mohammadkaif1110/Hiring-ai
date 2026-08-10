@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "node -e \"if (require('fs').existsSync('frontend')) { require('child_process').execSync('cd frontend && npm run dev', {stdio: 'inherit'}); } else { require('child_process').execSync('npm run dev', {stdio: 'inherit'}); }\"",
-    "build": "node -e \"if (require('fs').existsSync('frontend')) { require('child_process').execSync('cd frontend && npm install && npm run build', {stdio: 'inherit'}); } else { require('child_process').execSync('npm run build', {stdio: 'inherit'}); }\"",
-    "start": "node -e \"if (require('fs').existsSync('frontend')) { require('child_process').execSync('cd frontend && npm run start', {stdio: 'inherit'}); } else { require('child_process').execSync('npm run start', {stdio: 'inherit'}); }\""
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   }
 }
