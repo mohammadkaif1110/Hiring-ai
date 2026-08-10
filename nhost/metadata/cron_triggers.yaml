@@ -1,0 +1,10 @@
+- name: scheduled_workflow_trigger
+  webhook: '{{NHOST_FUNCTIONS_URL}}/scheduled-trigger'
+  schedule: '*/5 * * * *'
+  include_in_metadata: true
+  payload: {}
+  retry_conf:
+    num_retries: 1
+    retry_interval_seconds: 10
+    timeout_seconds: 60
+    tolerance_seconds: 21600

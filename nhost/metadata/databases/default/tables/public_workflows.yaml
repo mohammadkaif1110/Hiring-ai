@@ -1,0 +1,106 @@
+table:
+  name: workflows
+  schema: public
+object_relationships:
+  - name: organization
+    using:
+      foreign_key_constraint_on: org_id
+array_relationships:
+  - name: workflow_runs
+    using:
+      foreign_key_constraint_on:
+        column: workflow_id
+        table:
+          name: workflow_runs
+          schema: public
+  - name: workflow_steps
+    using:
+      foreign_key_constraint_on:
+        column: workflow_id
+        table:
+          name: workflow_steps
+          schema: public
+  - name: workflow_triggers
+    using:
+      foreign_key_constraint_on:
+        column: workflow_id
+        table:
+          name: workflow_triggers
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        _exists:
+          _table:
+            name: org_members
+            schema: public
+          _where:
+            org_id:
+              _ceq:
+                - $
+                - org_id
+            role:
+              _in:
+                - owner
+                - editor
+            user_id:
+              _eq: X-Hasura-User-Id
+      set:
+        created_by: X-Hasura-User-Id
+      columns:
+        - org_id
+        - name
+        - description
+        - is_active
+        - created_by
+select_permissions:
+  - role: user
+    permission:
+      columns: '*'
+      filter:
+        organization:
+          org_members:
+            user_id:
+              _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - name
+        - description
+        - is_active
+      filter:
+        _exists:
+          _table:
+            name: org_members
+            schema: public
+          _where:
+            org_id:
+              _ceq:
+                - $
+                - org_id
+            role:
+              _in:
+                - owner
+                - editor
+            user_id:
+              _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        _exists:
+          _table:
+            name: org_members
+            schema: public
+          _where:
+            org_id:
+              _ceq:
+                - $
+                - org_id
+            role:
+              _eq: owner
+            user_id:
+              _eq: X-Hasura-User-Id

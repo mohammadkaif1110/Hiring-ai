@@ -1,0 +1,93 @@
+table:
+  name: org_members
+  schema: public
+object_relationships:
+  - name: organization
+    using:
+      foreign_key_constraint_on: org_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        _or:
+          - _and:
+              - user_id:
+                  _eq: X-Hasura-User-Id
+              - role:
+                  _eq: owner
+              - _not:
+                  _exists:
+                    _table:
+                      name: org_members
+                      schema: public
+                    _where:
+                      org_id:
+                        _ceq:
+                          - $
+                          - org_id
+          - _exists:
+              _table:
+                name: org_members
+                schema: public
+              _where:
+                org_id:
+                  _ceq:
+                    - $
+                    - org_id
+                role:
+                  _eq: owner
+                user_id:
+                  _eq: X-Hasura-User-Id
+      columns:
+        - user_id
+        - org_id
+        - role
+select_permissions:
+  - role: user
+    permission:
+      columns: '*'
+      filter:
+        organization:
+          org_members:
+            user_id:
+              _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - role
+      filter:
+        _exists:
+          _table:
+            name: org_members
+            schema: public
+          _where:
+            org_id:
+              _ceq:
+                - $
+                - org_id
+            role:
+              _eq: owner
+            user_id:
+              _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        _exists:
+          _table:
+            name: org_members
+            schema: public
+          _where:
+            org_id:
+              _ceq:
+                - $
+                - org_id
+            role:
+              _eq: owner
+            user_id:
+              _eq: X-Hasura-User-Id

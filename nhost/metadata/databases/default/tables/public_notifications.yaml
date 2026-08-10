@@ -1,0 +1,19 @@
+table:
+  name: notifications
+  schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns: '*'
+      filter: {}
+event_triggers:
+  - name: send_notification
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      interval_sec: 10
+      num_retries: 3
+      timeout_sec: 60
+    webhook: '{{NHOST_FUNCTIONS_URL}}/event-trigger-notify'

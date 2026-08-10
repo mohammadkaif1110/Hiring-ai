@@ -1,0 +1,31 @@
+actions:
+  - name: approveStep
+    definition:
+      kind: synchronous
+      handler: '{{NHOST_FUNCTIONS_URL}}/approve-step'
+      forward_client_headers: true
+    permissions:
+      - role: user
+  - name: triggerWorkflowRun
+    definition:
+      kind: synchronous
+      handler: '{{NHOST_FUNCTIONS_URL}}/trigger-workflow-run'
+      forward_client_headers: true
+    permissions:
+      - role: user
+  - name: webhookTrigger
+    definition:
+      kind: synchronous
+      handler: '{{NHOST_FUNCTIONS_URL}}/webhook-trigger'
+      forward_client_headers: true
+    permissions:
+      - role: public
+      - role: user
+custom_types:
+  enums: []
+  input_objects: []
+  objects:
+    - name: ApproveStepResponse
+    - name: TriggerWorkflowRunResponse
+    - name: WebhookTriggerResponse
+  scalars: []

@@ -1,0 +1,19 @@
+table:
+  name: org_monthly_usage
+  schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns: '*'
+      filter:
+        _exists:
+          _table:
+            name: org_members
+            schema: public
+          _where:
+            org_id:
+              _ceq:
+                - $
+                - org_id
+            user_id:
+              _eq: X-Hasura-User-Id
